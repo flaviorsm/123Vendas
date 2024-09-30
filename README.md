@@ -38,75 +38,19 @@ dotnet ef database update
 4. Execute a Aplicação:
 ```
 dotnet run
+
 ```
 5. Acesse a documentação da API via Swagger:
 ```
 https://localhost:5001/swagger/index.html
+
 ```
 ## Estrutura do Projeto
 
-├── 123Vendas
-│   ├── 123Vendas.Api/                               # Camada de Interface de API
-│   │   ├── Controllers/
-│   │   │   ├── VendaController.cs                   # Controlador responsável pelo CRUD de vendas
-│   │   │
-│   │   ├── Models/                                  # Modelos usados pela API (DTOs e ViewModels)
-│   │   │   ├── VendaRequest.cs
-│   │   │   ├── VendaResponse.cs
-│   │   │
-│   │   └── Program.cs                               # Configuração inicial da aplicação (Main)
-│   │
-│   ├── 123Vendas.Application/                       # Camada de Aplicação
-│   │   ├── Interfaces/                              # Contratos e interfaces de serviços
-│   │   │   ├── IVendaService.cs
-│   │   │
-│   │   ├── Services/                                # Implementação dos serviços de aplicação
-│   │   │   ├── VendaService.cs
-│   │   │
-│   │   ├── Events/                                  # Publicação de eventos de domínio
-│   │   │   ├── CompraCriadaEvent.cs
-│   │   │   ├── CompraAlteradaEvent.cs
-│   │   │   ├── CompraCanceladaEvent.cs
-│   │   │   ├── ItemCanceladoEvent.cs
-│   │
-│   ├── 123Vendas.Domain/                            # Camada de Domínio
-│   │   ├── Entities/                                # Entidades de domínio
-│   │   │   ├── Venda.cs
-│   │   │   ├── ItemVenda.cs
-│   │   │
-│   │   ├── ValueObjects/                            # Objetos de Valor
-│   │   │   ├── Cliente.cs
-│   │   │   ├── Produto.cs
-│   │   │   ├── Filial.cs
-│   │   │
-│   │   ├── Repositories/                            # Interfaces para os repositórios de persistência
-│   │   │   ├── IVendaRepository.cs
-│   │   │
-│   │   ├── Events/                                  # Eventos de domínio
-│   │   │   ├── VendaCriadaDomainEvent.cs
-│   │   │   ├── VendaCanceladaDomainEvent.cs
-│   │
-│   ├── 123Vendas.Infrastructure/                    # Camada de Infraestrutura
-│   │   ├── Persistence/                             # Implementação dos repositórios
-│   │   │   ├── VendaRepository.cs
-│   │   │
-│   │   ├── Messaging/                               # Infraestrutura para eventos (simulação de um Message Broker)
-│   │   │   ├── EventPublisher.cs                    # Publica eventos (simulado, pode logar eventos)
-│   │
-│   └── 123Vendas.Tests/                             # Testes unitários e de integração
-│       ├── Domain/
-│       │   ├── VendaTests.cs                        # Testes unitários da lógica de domínio
-│       ├── Application/
-│       │   ├── VendaServiceTests.cs                 # Testes unitários dos serviços de aplicação
-│       └── Infrastructure/
-│           ├── VendaRepositoryTests.cs              # Testes unitários do repositório
-│
-├── docs/                                            # Documentação do projeto
-│   ├── README.md                                    # Instruções de configuração e execução
-│
-├── .gitignore                                       # Arquivos e pastas a serem ignorados pelo Git
-├── Dockerfile                                       # Arquivo Docker para empacotamento da aplicação
-└── 123Vendas.sln                                    # Solução principal do projeto
+- Dominio: Contém as entidades, agregados e interfaces dos repositórios.
+- Aplicação: Implementa os serviços, DTOs, e lógica de aplicação.
+- Infraestrutura: Implementa o repositório utilizando o Entity Framework.
+- API: Contém os controllers da API.
 
 ## Testes
 
@@ -123,14 +67,14 @@ Para criar e aplicar migrações no EF Core, use os seguintes comandos no termin
 
 1. Criar a migração inicial:
 
-``` bash
-	dotnet ef migrations add InitialCreate
+```
+dotnet ef migrations add InitialCreate
 
 ```
 2. Aplicar as migrações no banco de dados:
 
-```bash
-	dotnet ef database update
+```
+dotnet ef database update
 
 ```
 	
